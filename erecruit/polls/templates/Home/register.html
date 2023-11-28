@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		{% load static %}
+		<!-- Required meta tags --> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>ALLIANZ PNB</title>
+		<link rel="stylesheet" href="{% static 'HomeInfo/vendors/mdi/css/materialdesignicons.min.css' %}">
+		<link rel="stylesheet" href="{% static 'HomeInfo/vendors/owl.carousel/css/owl.carousel.css' %}">
+		<link rel="stylesheet" href="{% static 'HomeInfo/vendors/owl.carousel/css/owl.theme.default.min.css' %}">
+		<link rel="stylesheet" href="{% static 'HomeInfo/vendors/aos/css/aos.css' %}">
+		<link rel="stylesheet" href="{% static 'HomeInfo/vendors/jquery-flipster/css/jquery.flipster.css' %}">
+		<link rel="stylesheet" href="{% static 'HomeInfo/css/style.css' %}">
+		<link rel="shortcut icon" href="{% static 'HomeInfo/images/favicon.png' %}">
+	</head>
+	<body  data-target=".navbar" data-offset="50">
+		<div id="mobile-menu-overlay"></div>
+		<nav class="navbar navbar-expand-lg fixed-top">
+			<div class="container">
+				<h3 class="font-weight-medium text-white">ALLIANZ PNB</h3>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"><i class="mdi mdi-menu"> </i></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+					<div class="d-lg-none d-flex justify-content-between px-4 py-3 align-items-center">
+						
+						<a href="javascript:;" class="close-menu"><i class="mdi mdi-close"></i></a>
+					</div>
+					<ul class="navbar-nav ml-auto align-items-center">
+						<li class="nav-item">
+							<a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link btn btn-success" href="login">login</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+        <section class="contactus" id="contact">
+            <div class="container"><div><br><br><br></div>
+                <div class="row mb-5 pb-5">
+                    <div class="col-sm-5" data-aos="fade-up" data-aos-offset="-500">
+                        <img src="{% static 'HomeInfo/images/log2.png' %}" alt="contact" class="img-fluid">
+                    </div>
+                    <div class="col-sm-7" data-aos="fade-up" data-aos-offset="-500"><br><br>
+                        <h3 class="font-weight-medium text-dark mt-5 mt-lg-0">Register Now!</h3>
+                        <h5 class="text-dark mb-5">Enter your information to Register.</h5>
+                        <form>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="email" placeholder="Email*">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="password" placeholder="Password*">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <a href="#" class="btn btn-secondary">Login</a>
+                                </div>
+                                <div class="col-12"><br>
+                                    <p class="small mb-0">Don't have account? <a href="/register">Create an account</a></p>
+                                  </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+
+		<script src="{% static 'HomeInfo/vendors/base/vendor.bundle.base.js' %}"></script>
+		<script src="{% static 'HomeInfo/vendors/owl.carousel/js/owl.carousel.js' %}"></script>
+		<script src="{% static 'HomeInfo/vendors/aos/js/aos.js' %}"></script>
+		<script src="{% static 'HomeInfo/vendors/jquery-flipster/js/jquery.flipster.min.js' %}"></script>
+		<script src="{% static 'HomeInfo/js/template.js' %}"></script>
+	</body>
+</html>
