@@ -48,39 +48,46 @@
                     <div class="col-sm-7" data-aos="fade-up" data-aos-offset="-500"><br><br>
                         <h3 class="font-weight-medium text-dark mt-5 mt-lg-0">Register Now!</h3>
                         <h5 class="text-dark mb-5">Enter your information to Register.</h5>
-                        <form>
-                            <div class="row">								
-								<div class="col-sm-6">
+						<div>
+							{% if messages %}
+								<ul class="messages">
+									{% for message in messages %}
+										<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+									{% endfor %}
+								</ul>
+							{% endif %}
+						</div>
+                        <form method="post" action="{% url 'register' %}">
+							{% csrf_token %}
+							<div class="row">								
+								<div class="col-sm-5">
 									<div class="form-group">
-										<input type="username" class="form-control" id="username" placeholder="Username*">
+										<label for="username">Username: </label><br>
+										{{ form.username }}
 									</div>
 								</div>								
-                                <div class="col-sm-6">
+                                <div class="col-sm-5">
 									<div class="form-group">
-										<input type="text" class="form-control" id="email" placeholder="Email*">
+										<label for="email">Email: </label><br>
+										{{ form.email }}
 									</div>
 								</div>
-								<div class="col-sm-6">
+								<div class="col-sm-5">
 									<div class="form-group">
-										<select class="form-control" id="role" name="role">
-											<option value="selected" disabled selected>Select a role*</option>
-											<option value="admin">Admin</option>
-											<option value="agent">Agent</option>
-											<option value="applicant">Applicant</option>
-										</select>
+										<label for="password">Password: </label><br>
+										{{ form.password }}
+									</div>
+								</div>	
+								<div class="col-sm-5">
+									<div class="form-group">
+										<label for="role">Role: </label><br>
+										{{ form.role }}
 									</div>
 								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<input type="password" class="form-control" id="password" placeholder="Password*">
-									</div>
-								</div>							
+														
                                 <div class="col-sm-12">
-                                    <a href="#" class="btn btn-secondary">Login</a>
-                                </div>
-                                <div class="col-12"><br>
-                                    <p class="small mb-0">Don't have account? <a href="/register">Create an account</a></p>
-                                  </div>
+									<button type="submit" class="btn btn-secondary">Register</button>
+								</div>
                             </div>
                         </form>
                     </div>

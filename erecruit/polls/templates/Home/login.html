@@ -48,26 +48,37 @@
                     <div class="col-sm-7" data-aos="fade-up" data-aos-offset="-500"><br><br>
                         <h3 class="font-weight-medium text-dark mt-5 mt-lg-0">Login Now!</h3>
                         <h5 class="text-dark mb-5">Enter your information to Login.</h5>
-                        <form><br>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="email" placeholder="Email*">
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" id="password" placeholder="Password*">
-                                    </div>
-                                </div>
+						<div>
+							{% if messages %}
+								<ul class="messages">
+									{% for message in messages %}
+										<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+									{% endfor %}
+								</ul>
+							{% endif %}
+						</div>
+                        <form method="post" action="{% url 'login' %}">
+							{% csrf_token %}						
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label for="email">Email: </label><br>
+										{{ form.email }}
+									</div>
+								</div>								
+                                
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label for="password">Password: </label><br>
+										{{ form.password }}
+									</div>
+								</div>					
                                 <div class="col-sm-12">
-                                    <a href="#" class="btn btn-secondary">Login</a>
-                                </div>
-                                <div class="col-12"><br>
-                                    <p class="small mb-0">Don't have account? <a href="/register">Create an account</a></p>
-                                  </div>
-                            </div>
-                        </form>
+									<button type="submit" class="btn btn-secondary">Login</button>
+								</div>
+								<div class="col-12"><br>
+									<p class="small mb-0">Don't have an account? <a href="{% url 'register' %}">Create an account</a></p>
+								</div>
+						</form>
                     </div>
                 </div>
             </div>

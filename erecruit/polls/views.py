@@ -1,13 +1,45 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import RegistrationForm
+from .forms import LoginForm
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+
+
 
 # Home
 def index(request):
     return render(request, "Home/index.html")
+
 def login(request):
-    return render(request, "Home/login.html")
+    form = LoginForm()  
+    if request.method == 'POST':
+        email = request.POST.get('email')  
+        password = request.POST.get('password')
+        role = request.POST.get('role')
+        user = authenticate(request, email=email, password=password, role=role)
+        if user == 'admin':
+            return redirect('/dashboard')  
+        else:
+            form = RegistrationForm()
+            messages.error(request, 'Invalid email or password. Please try again.')
+
+    return render(request, 'Home/login.html', {'form': form})
+
+
+
 def register(request):
-    return render(request, "Home/register.html")
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Registration successful! You can now log in.') 
+    else:
+        form = RegistrationForm()
+    return render(request, 'Home/register.html', {'form': form})
+
+
 
 
 #Admin
@@ -23,4 +55,12 @@ def setting(request):
     return render(request, "Admin/setting.html")
 def help(request):
     return render(request, "Admin/help.html")
+
+
+
+
+
+
+
+
 

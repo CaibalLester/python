@@ -162,28 +162,28 @@
                             </li>
 
                             <li>
-                                <a class="dropdown-item" href="/AdProfile">
+                                <a class="dropdown-item" href="{% url 'profile' %}">
                                     <i class="bi-person me-2"></i>
                                     Profile
                                 </a>
                             </li>
 
                             <li>
-                                <a class="dropdown-item" href="/AdSetting">
+                                <a class="dropdown-item" href="{% url 'setting' %}">
                                     <i class="bi-gear me-2"></i>
                                     Settings
                                 </a>
                             </li>
 
                             <li>
-                                <a class="dropdown-item" href="/AdHelp">
+                                <a class="dropdown-item" href="{% url 'help' %}">
                                     <i class="bi-question-circle me-2"></i>
                                     Help
                                 </a>
                             </li>
 
                             <li class="border-top mt-3 pt-2 mx-4">
-                                <a class="dropdown-item ms-0 me-0" href="/">
+                                <a class="dropdown-item ms-0 me-0" href="{% url 'index' %}">
                                     <i class="bi-box-arrow-left me-2"></i>
                                     Logout
                                 </a>
@@ -201,7 +201,7 @@
                         <ul class="nav flex-column h-100">
                             
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="/AdDash">
+                                <a class="nav-link" aria-current="page" href="{% url 'dashboard' %}">
                                     <i class="bi-house-fill me-2"></i>
                                     Overview
                                 </a>
@@ -215,11 +215,11 @@
                                 <div class="collapse" id="manageDropdown">
                                     <ul class="nav">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/ManageAgent">
+                                            <a class="nav-link" href="{% url 'ManageAgent' %}">
                                                 <i class="bi-person me-2"></i>
                                                 <span class="align-middle">Agents</span>
                                             </a><br>
-                                            <a class="nav-link active"  href="ManageApplicant">
+                                            <a class="nav-link active"  href="{% url 'ManageApplicant' %}">
                                                 <i class="bi-person me-2"></i>
                                                 <span class="align-middle">Applicants</span>
                                             </a>
@@ -230,28 +230,28 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="/AdProfile">
+                                <a class="nav-link" href="{% url 'profile' %}">
                                     <i class="bi-person me-2"></i>
                                     Profile
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="/AdSetting">
+                                <a class="nav-link" href="{% url 'setting' %}">
                                     <i class="bi-gear me-2"></i>
                                     Settings
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="/AdHelp">
+                                <a class="nav-link" href="{% url 'help' %}">
                                     <i class="bi-question-circle me-2"></i>
                                     Help Center
                                 </a>
                             </li>
 
                             <li class="nav-item border-top mt-auto pt-2">
-                                <a class="nav-link" href="/">
+                                <a class="nav-link" href="{% url 'index' %}">
                                     <i class="bi-box-arrow-left me-2"></i>
                                     Logout
                                 </a>
