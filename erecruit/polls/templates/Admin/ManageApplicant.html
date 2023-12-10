@@ -31,7 +31,7 @@
             </button>
 
             <form class="custom-form header-form ms-lg-3 ms-md-3 me-lg-auto me-md-auto order-2 order-lg-0 order-md-0" action="#" method="get" role="form">
-                <input class="form-control" name="search" type="text" placeholder="Search" aria-label="Search">
+                <input id="searchInput" class="form-control" name="search" type="text" placeholder="Search" aria-label="Search">
             </form>
 
             <div class="navbar-nav me-lg-2">
@@ -279,7 +279,8 @@
                                                 </thead>
                                                 <tbody>
                                                     {% for ail in ails %}
-                                                    <tr>
+                                                    <tr class="searchable-row">
+                                                    
                                                         <td>{{ ail.fullname }}</td>
                                                         <td>{{ ail.contact }}</td>
                                                         <td>{{ ail.email }}</td>
@@ -289,6 +290,7 @@
                                                         <td><button class="btn btn-success" formnovalidate name="edit" value="{{ ail.id }}">Edit</button></td>
                                                         <td><button class="btn btn-danger" formnovalidate name="delete" value="{{ ail.id }}">Delete</button></td>
                                                     </tr>
+                                                    
                                                     {% endfor %}
                                                 </tbody>
                                             </table>
@@ -355,5 +357,22 @@
         <script src="{% static 'AdminInfo/js/bootstrap.bundle.min.js' %}"></script>
         <script src="{% static 'AdminInfo/js/apexcharts.min.js' %}"></script>
         <script src="{% static 'AdminInfo/js/custom.js' %}"></script>
+        <script src="{% static 'AdminInfo/js/jquery.min.js' %}"></script>
+        <script>
+            $(document).ready(function () {
+                $('#searchInput').on('input', function () {
+                    var searchText = $(this).val().toLowerCase();
+                    $('.searchable-row').each(function () {
+                        var rowText = $(this).text().toLowerCase();
+                        if (rowText.includes(searchText)) {
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                });
+            });
+        </script>
+
     </body>
 </html>
