@@ -48,40 +48,45 @@
                     <div class="col-sm-7" data-aos="fade-up" data-aos-offset="-500"><br><br>
                         <h3 class="font-weight-medium text-dark mt-5 mt-lg-0">Register Now!</h3>
                         <h5 class="text-dark mb-5">Enter your information to Register.</h5>
-						<div>
-							{% if messages %}
-								<ul class="messages">
-									{% for message in messages %}
-										<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-									{% endfor %}
-								</ul>
-							{% endif %}
-						</div>
+						
+							
+						
                         <form method="post" action="{% url 'register' %}">
 							{% csrf_token %}
+							<div class="col-sm-8">
+								<div class="form-group">
+									{% if messages %}
+										<ul class="messages">
+											{% for message in messages %}
+												<li class="form-control" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+											{% endfor %}
+										</ul>
+									{% endif %}
+								</div>
+							</div>	
 							<div class="row">								
 								<div class="col-sm-5">
 									<div class="form-group">
-										<label for="username">Username: </label><br>
-										{{ form.username }}
+										<input class="form-control" type="text" placeholder="Username" name="username" class="input-field" required>
 									</div>
 								</div>								
                                 <div class="col-sm-5">
 									<div class="form-group">
-										<label for="email">Email: </label><br>
-										{{ form.email }}
+										<input class="form-control" type="email" placeholder="Email" name="email" class="input-field" required>
 									</div>
 								</div>
 								<div class="col-sm-5">
 									<div class="form-group">
-										<label for="password">Password: </label><br>
-										{{ form.password }}
+										<input class="form-control" type="password" placeholder="Password" name="password" class="input-field" required>
 									</div>
 								</div>	
 								<div class="col-sm-5">
 									<div class="form-group">
-										<label for="role">Role: </label><br>
-										{{ form.role }}
+										<select class="form-control" name="role" class="input-field" required>
+											<option value="" disabled selected>Select Role</option>
+											<option value="admin">Admin</option>
+											<option value="applicant">Applicant</option>
+										</select>
 									</div>
 								</div>
 														

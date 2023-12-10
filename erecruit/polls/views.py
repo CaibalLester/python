@@ -2,32 +2,36 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import RegistrationForm
-from .forms import LoginForm
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.decorators import login_required
-
+from .forms import LoginForm
+from .forms import AilForm
+from .models import Ail
 
 
 # Home
 def index(request):
     return render(request, "Home/index.html")
 
+
+
 def login(request):
-    form = LoginForm()  
     if request.method == 'POST':
-        email = request.POST.get('email')  
-        password = request.POST.get('password')
-        role = request.POST.get('role')
-        user = authenticate(request, email=email, password=password, role=role)
-        if user == 'admin':
-            return redirect('/dashboard')  
-        else:
-            form = RegistrationForm()
-            messages.error(request, 'Invalid email or password. Please try again.')
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                messages.success(request, 'Login successful!')
+                return redirect('home')  # Replace 'home' with the name of your home page URL
+            else:
+                messages.error(request, 'Invalid login credentials.')
+    else:
+        form = LoginForm()
 
     return render(request, 'Home/login.html', {'form': form})
-
-
 
 def register(request):
     if request.method == 'POST':
@@ -40,21 +44,52 @@ def register(request):
     return render(request, 'Home/register.html', {'form': form})
 
 
+def DashApp(request):
+    if request.method == 'POST':
+        form = AilForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Submitted Successfully!')
+    else:
+        form = AilForm()
+
+    ails = Ail.objects.all()
+
+    return render(request, 'Applicant/DashApp.html', {'form': form, 'ails': ails})
+
+def ManageApplicant(request):
+    if request.method == 'POST':
+        form = AilForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Submitted Successfully!')
+    else:
+        form = AilForm()
+
+    ails = Ail.objects.all()
+
+    return render(request, 'Admin/ManageApplicant.html', {'form': form, 'ails': ails})
+   
 
 
 #Admin
 def dashboard(request):
     return render(request, "Admin/dashboard.html")
-def ManageApplicant(request):
-    return render(request, "Admin/ManageApplicant.html")
-def ManageAgent(request):
-    return render(request, "Admin/ManageAgent.html")
+
 def profile(request):
     return render(request, "Admin/profile.html")
 def setting(request):
     return render(request, "Admin/setting.html")
 def help(request):
     return render(request, "Admin/help.html")
+
+
+
+
+
+
+
+
 
 
 

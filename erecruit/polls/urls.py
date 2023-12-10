@@ -11,10 +11,12 @@ urlpatterns = [
 
     path('dashboard/', views.dashboard, name='dashboard'),
     path('ManageApplicant/', views.ManageApplicant, name='ManageApplicant'),
-    path('ManageAgent/', views.ManageAgent, name='ManageAgent'),
+
     path('profile/', views.profile, name='profile'),
     path('setting/', views.setting, name='setting'),
     path('help/', views.help, name='help'),
+
+     path('DashApp/', views.DashApp, name='DashApp'),
 ]
 
 

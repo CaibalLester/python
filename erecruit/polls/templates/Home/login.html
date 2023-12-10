@@ -39,15 +39,15 @@
 			</div>
 		</nav>
 
-        <section class="contactus" id="contact">
-            <div class="container"><div><br><br><br></div>
-                <div class="row mb-5 pb-5">
-                    <div class="col-sm-5" data-aos="fade-up" data-aos-offset="-500">
-                        <img src="{% static 'HomeInfo/images/log1.png' %}" alt="contact" class="img-fluid">
+        <section class="contactus" id="login">
+			<div class="container">
+				<div><br><br><br></div>
+				<div class="row mb-5 pb-5">
+					<div class="col-sm-5" data-aos="fade-up" data-aos-offset="-500">
+                        <img src="{% static 'HomeInfo/images/log2.png' %}" alt="contact" class="img-fluid">
                     </div>
-                    <div class="col-sm-7" data-aos="fade-up" data-aos-offset="-500"><br><br>
-                        <h3 class="font-weight-medium text-dark mt-5 mt-lg-0">Login Now!</h3>
-                        <h5 class="text-dark mb-5">Enter your information to Login.</h5>
+					<div class="col-sm-7" data-aos="fade-up" data-aos-offset="-500"><br><br>
+						<h3 class="font-weight-medium text-dark mt-5 mt-lg-0">Login</h3><br><br>
 						<div>
 							{% if messages %}
 								<ul class="messages">
@@ -57,32 +57,28 @@
 								</ul>
 							{% endif %}
 						</div>
-                        <form method="post" action="{% url 'login' %}">
-							{% csrf_token %}						
-								<div class="col-sm-6">
+						<form method="post" action="{% url 'login' %}">
+							{% csrf_token %}
+							<div class="row">
+								<div class="col-sm-5">
 									<div class="form-group">
-										<label for="email">Email: </label><br>
-										{{ form.email }}
+										<input class="form-control" type="username" placeholder="username" name="username" class="input-field" required>
 									</div>
-								</div>								
-                                
-								<div class="col-sm-6">
+								</div>
+								<div class="col-sm-5">
 									<div class="form-group">
-										<label for="password">Password: </label><br>
-										{{ form.password }}
+										<input class="form-control" type="password" placeholder="Password" name="password" class="input-field" required>
 									</div>
-								</div>					
-                                <div class="col-sm-12">
-									<button type="submit" class="btn btn-secondary">Login</button>
 								</div>
-								<div class="col-12"><br>
-									<p class="small mb-0">Don't have an account? <a href="{% url 'register' %}">Create an account</a></p>
+								<div class="col-sm-12">
+									<button type="submit" class="btn btn-success">Login</button>
 								</div>
+							</div>
 						</form>
-                    </div>
-                </div>
-            </div>
-        </section>
+					</div>
+				</div>
+			</div>
+		</section>
         
 
 		<script src="{% static 'HomeInfo/vendors/base/vendor.bundle.base.js' %}"></script>

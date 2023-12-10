@@ -16,13 +16,14 @@
         <link href="{% static 'AdminInfo/css/bootstrap-icons.css' %}" rel="stylesheet">
         <link href="{% static 'AdminInfo/css/apexcharts.css' %}" rel="stylesheet">
         <link href="{% static 'AdminInfo/css/tooplate-mini-finance.css' %}" rel="stylesheet">
+        <link rel="shortcut icon" href="{% static 'home/images/allianzlogo1.png' %}" />
     </head>
     
     <body>
         <header class="navbar sticky-top flex-md-nowrap">
             <div class="col-md-3 col-lg-3 me-0 px-3 fs-6">
                 <a class="navbar-brand" href="#">
-                 ALLIANZ ADMIN
+                ALLIANZ APPLICANT
                 </a>
             </div>
 
@@ -101,42 +102,42 @@
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-4">
                                         <a class="dropdown-item text-center" href="#">
-                                            <img src="AdminInfo/images/social/search.png" class="profile-image img-fluid" alt="">
+                                            <img src="{% static 'AdminInfo/images/social/search.png' %}" class="profile-image img-fluid" alt="">
                                             <span class="d-block">Google</span>
                                         </a>
                                     </div>
 
                                     <div class="col-lg-4 col-md-4 col-4">
                                         <a class="dropdown-item text-center" href="#">
-                                            <img src="AdminInfo/images/social/spotify.png" class="profile-image img-fluid" alt="">
+                                            <img src="{% static 'AdminInfo/images/social/spotify.png' %}" class="profile-image img-fluid" alt="">
                                             <span class="d-block">Spotify</span>
                                         </a>
                                     </div>
 
                                     <div class="col-lg-4 col-md-4 col-4">
                                         <a class="dropdown-item text-center" href="#">
-                                            <img src="AdminInfo/images/social/telegram.png" class="profile-image img-fluid" alt="">
+                                            <img src="{% static 'AdminInfo/images/social/telegram.png' %}" class="profile-image img-fluid" alt="">
                                             <span class="d-block">Telegram</span>
                                         </a>
                                     </div>
 
                                     <div class="col-lg-4 col-md-4 col-4">
                                         <a class="dropdown-item text-center" href="#">
-                                            <img src="AdminInfo/images/social/snapchat.png" class="profile-image img-fluid" alt="">
+                                            <img src="{% static 'AdminInfo/images/social/snapchat.png' %}" class="profile-image img-fluid" alt="">
                                             <span class="d-block">Snapchat</span>
                                         </a>
                                     </div>
 
                                     <div class="col-lg-4 col-md-4 col-4">
                                         <a class="dropdown-item text-center" href="#">
-                                            <img src="AdminInfo/images/social/tiktok.png" class="profile-image img-fluid" alt="">
+                                            <img src="{% static 'AdminInfo/images/social/tiktok.png' %}" class="profile-image img-fluid" alt="">
                                             <span class="d-block">Tiktok</span>
                                         </a>
                                     </div>
 
                                     <div class="col-lg-4 col-md-4 col-4">
                                         <a class="dropdown-item text-center" href="#">
-                                            <img src="AdminInfo/images/social/youtube.png" class="profile-image img-fluid" alt="">
+                                            <img src="{% static 'AdminInfo/images/social/youtube.png' %}" class="profile-image img-fluid" alt="">
                                             <span class="d-block">Youtube</span>
                                         </a>
                                     </div>
@@ -147,12 +148,12 @@
 
                     <div class="dropdown px-3">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="AdminInfo/images/medium-shot-happy-man-smiling.jpg" class="profile-image img-fluid" alt="">
+                            <img src="{% static 'AdminInfo/images/prof1.png' %}" class="profile-image img-fluid" alt="">
                         </a>
                         <ul class="dropdown-menu bg-white shadow">
                             <li>
                                 <div class="dropdown-menu-profile-thumb d-flex">
-                                    <img src="AdminInfo/images/medium-shot-happy-man-smiling.jpg" class="profile-image img-fluid me-3" alt="">
+                                    <img src="{% static 'AdminInfo/images/prof1.png' %}" class="profile-image img-fluid me-3" alt="">
 
                                     <div class="d-flex flex-column">
                                         <small>Thomas</small>
@@ -208,9 +209,9 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link active" href="{% url 'ManageApplicant' %}">
+                                <a class="nav-link active" href="{% url 'DashApp' %}">
                                     <i class="bi-person me-2"></i>
-                                    Manage Applicant
+                                    Form
                                 </a>
                             </li>
 
@@ -247,113 +248,79 @@
 
                 <main class="main-wrapper col-md-9 ms-sm-auto py-4 col-lg-9 px-md-4 border-start">
                     <div class="title-group mb-3">
-                        <h1 class="h2 mb-0">Applicant Information</h1>
+                        <h1 class="h2 mb-0">FORM</h1>
                     </div>
-
                     <div class="row my-4">
-                        <div class="col-lg-12 col-12">
+                        <div class="col-lg-7 col-12">
                             <div class="custom-block bg-white">
-                                <h5 class="mb-4">Activities</h5>
-
-
-                                
-                    <div class="row my-4">
-                        <div class="col-lg-15 col-12">
-                            <div class="custom-block bg-white">
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="true"><h6 class="mb-4">FORM INFORMATION</h6></button>
+                                    </li>
+                                </ul>
                                 <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-                                        <div class="table-responsive">
-                                            {% if ails %}
-                                            <table class="account-table table">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Fullname</th>
-                                                        <th scope="col">Contact</th>
-                                                        <th scope="col">Email</th>
-                                                        <th scope="col">SSS ID</th>
-                                                        <th scope="col">National ID</th>
-                                                        <th scope="col">Occupation</th>
-                                                        <th scope="col">Action</th>
-                                                        <th scope="col"></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    {% for ail in ails %}
-                                                    <tr>
-                                                        <td>{{ ail.fullname }}</td>
-                                                        <td>{{ ail.contact }}</td>
-                                                        <td>{{ ail.email }}</td>
-                                                        <td>{{ ail.sss_id }}</td>
-                                                        <td>{{ ail.national_id }}</td>
-                                                        <td>{{ ail.occupation }}</td>
-                                                        <td><button class="btn btn-success" formnovalidate name="edit" value="{{ ail.id }}">Edit</button></td>
-                                                        <td><button class="btn btn-danger" formnovalidate name="delete" value="{{ ail.id }}">Delete</button></td>
-                                                    </tr>
-                                                    {% endfor %}
-                                                </tbody>
-                                            </table>
-                                            {% else %}
-                                            <p>No Ail data available.</p>
-                                            {% endif %}
-                                        </div>
-
-                                <nav aria-label="Page navigation example">
-                                        <ul class="pagination justify-content-center mb-0">
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Previous">
-                                                    <span aria-hidden="true">Prev</span>
-                                                </a>
-                                            </li>
-
-                                            <li class="page-item active" aria-current="page">
-                                                <a class="page-link" href="#">1</a>
-                                            </li>
+                                    <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">                                       
+                                        <div class="col-sm-11">
+                                            <div class="form-group">                                             
+                                                    <ul class="messages">
+                                                        {% for message in messages %}
+                                                            <li class="form-control" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                                        {% endfor %}
+                                                    </ul>                    
+                                            </div>
+                                        </div>	
+                                        
+                                        <form method="post" action="{% url 'DashApp' %}">
+                                            {% csrf_token %}
+                                           
+                                            <!-- Fullname -->
+                                            <label for="fullname">Fullname:</label>
+                                            <input class="form-control" type="text" placeholder="Fullname" name="fullname" class="input-field" required><br>
+                                        
+                                            <!-- Contact -->
+                                            <label for="contact">Contact:</label>
+                                            <input class="form-control" type="tel" placeholder="Contact" name="contact" class="input-field" required><br>
+                                        
+                                            <!-- Email -->
+                                            <label for="email">Email:</label>
+                                            <input class="form-control" type="email" placeholder="Email" name="email" class="input-field" required><br>
+                                        
+                                            <!-- SSS Id -->
+                                            <label for="sss_id">SSS Id:</label>
+                                            <input class="form-control" type="text" placeholder="SSS Id" name="sss_id" class="input-field" required><br>
+                                        
+                                            <!-- National Identification Number -->
+                                            <label for="national_id">National Identification Number:</label>
+                                            <input class="form-control" type="text" placeholder="National Identification Number" name="national_id" class="input-field" required><br>
+                                        
+                                            <!-- Occupation -->
+                                            <label for="occupation">Occupation:</label>
+                                            <input class="form-control" type="text" placeholder="Occupation" name="occupation" class="input-field" required><br>
+                                        
+                                            <!-- Annual Salary -->
+                                            <label for="annual_salary">Annual Salary:</label>
+                                            <input class="form-control" type="number" placeholder="Annual Salary" name="annual_salary" class="input-field" required><br>
+                                        
+                                           
+                                            <!-- Submit Button -->
+                                            <button type="submit" class="btn btn-secondary">Submit</button>
                                             
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">2</a>
-                                            </li>
-                                            
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">3</a>
-                                            </li>
-
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">4</a>
-                                            </li>
-                                            
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
-                                                    <span aria-hidden="true">Next</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </nav>
+                                        </form> 
+                                    </div> 
+                                </div>
                             </div>
                         </div>
-
-                        
-                           
-
-
-                        
-                    </div>
-
-                    <footer class="site-footer">
-                        <div class="container">
-                            <div class="row">
-                                
-                            </div>
-                        </div>
-                    </footer>
+                    </div> 
                 </main>
-
             </div>
         </div>
 
-        <!-- JAVASCRIPT FILES -->
-        <script src="{% static 'AdminInfo/js/jquery.min.js' %}"></script>
+        
+
+       <!-- JAVASCRIPT FILES -->
+       <script src="{% static 'AdminInfo/js/jquery.min.js' %}"></script>
         <script src="{% static 'AdminInfo/js/bootstrap.bundle.min.js' %}"></script>
-        <script src="{% static 'AdminInfo/js/apexcharts.min.js' %}"></script>
         <script src="{% static 'AdminInfo/js/custom.js' %}"></script>
+
     </body>
 </html>
