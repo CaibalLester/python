@@ -36,12 +36,17 @@ def login(request):
             if user.role == 'admin':
                 return redirect('/ManageApplicant')  
             elif user.role == 'applicant':
-                return redirect('/AppView')  
+                return redirect('/DashApp')  
     else:
         form = LoginForm()
 
     return render(request, 'Home/login.html', {'form': form})
 
+def delete_ail(request, ail_id):
+    ail_instance = get_object_or_404(Ail, pk=ail_id)
+    ail_instance.delete()
+    messages.info(request, 'Entry deleted successfully!')
+    return redirect('ManageApplicant') 
 
 def DashApp(request, ail_id=None):
     if request.method == 'POST':
@@ -96,7 +101,19 @@ def AppView(request):
     return render(request, 'Applicant/AppView.html', {'form': form, 'ails': ails})
 
 
-   
+
+def edit_ail(request, ail_id):
+    ail_instance = get_object_or_404(Ail, pk=ail_id)
+
+    if request.method == 'POST':
+        form = AilForm(request.POST, instance=ail_instance)
+        if form.is_valid():
+            form.save()
+            return redirect('ManageApplicant')  # Replace 'your_redirect_url' with the appropriate URL
+    else:
+        form = AilForm(instance=ail_instance)
+
+    return render(request, 'Admin/ManageApplicant.html', {'form': form, 'ail_id': ail_id})
 
 
 #Admin

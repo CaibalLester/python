@@ -16,6 +16,12 @@
         <link href="{% static 'AdminInfo/css/bootstrap-icons.css' %}" rel="stylesheet">
         <link href="{% static 'AdminInfo/css/apexcharts.css' %}" rel="stylesheet">
         <link href="{% static 'AdminInfo/css/tooplate-mini-finance.css' %}" rel="stylesheet">
+        <!-- Add this to your HTML file -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
     </head>
     
     <body>
@@ -98,6 +104,73 @@
                                 
                     <div class="row my-4">
                         <div class="col-lg-15 col-12">
+                            {% for ail in ails %}
+                                <!-- Display existing entries -->
+                                {{ ail.field_name }}
+
+                                <!-- Add edit button for each entry -->
+                                
+                                
+
+                                <!-- Edit Modal -->
+                                <div class="modal fade" id="editModal{{ ail.id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel{{ ail.id }}" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editModalLabel{{ ail.id }}">Edit Applicant Information</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form method="post" action="{% url 'edit_ail' ail.id %}">
+                                                    {% csrf_token %}
+                                                    
+                                                    {% if ails %}
+                                                    {% for ail in ails %}
+                                            <!-- Fullname -->
+                                            <label for="fullname">Fullname:</label>
+                                            <input class="form-control" type="text" placeholder="Fullname" name="fullname" value="{{ ail.fullname }}" required><br>
+                                        
+                                            <!-- Contact -->
+                                            <label for="contact">Contact:</label>
+                                            <input class="form-control" type="tel" placeholder="Contact" name="contact" value="{{ ail.contact }}" required><br>
+                                        
+                                            <!-- Email -->
+                                            <label for="email">Email:</label>
+                                            <input class="form-control" type="email" placeholder="Email" name="email" value="{{ ail.email }}" required><br>
+                                        
+                                            <!-- SSS Id -->
+                                            <label for="sss_id">SSS Id:</label>
+                                            <input class="form-control" type="text" placeholder="SSS Id" name="sss_id" value="{{ ail.sss_id }}" required><br>
+                                        
+                                            <!-- National Identification Number -->
+                                            <label for="national_id">National Identification Number:</label>
+                                            <input class="form-control" type="text" placeholder="National Identification Number" name="national_id" value="{{ ail.national_id }}" required><br>
+                                        
+                                            <!-- Occupation -->
+                                            <label for="occupation">Occupation:</label>
+                                            <input class="form-control" type="text" placeholder="Occupation" name="occupation" value="{{ ail.occupation }}" required><br>
+                                        
+                                            <!-- Annual Salary -->
+                                            <label for="annual_salary">Annual Salary:</label>
+                                            <input class="form-control" type="number" placeholder="Annual Salary" name="annual_salary" value="{{ ail.annual_salary }}" required><br>
+                                            {% endfor %}
+                                            {% else %}
+                                            <p>No Ail data available.</p>
+                                            {% endif %}
+                                           
+                                                    <br>
+                                                    <button type="submit" class="btn btn-primary">Update Your Info</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                            <!-- Your form and other content here -->
+
                             <div class="custom-block bg-white">
                                 <div class="tab-content" id="myTabContent">
                                     <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
@@ -126,8 +199,10 @@
                                                         <td>{{ ail.sss_id }}</td>
                                                         <td>{{ ail.national_id }}</td>
                                                         <td>{{ ail.occupation }}</td>
-                                                        <td><button class="btn btn-success" formnovalidate name="edit" value="{{ ail.id }}">Edit</button></td>
-                                                        <td><button class="btn btn-danger" formnovalidate name="delete" value="{{ ail.id }}">Delete</button></td>
+                                                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{ ail.id }}">
+                                                            Edit
+                                                        </button></td>
+                                                        <td><a class="btn btn-danger"  href="{% url 'delete_ail' ail.id %}">Delete</a></td>
                                                     </tr>
                                                     
                                                     {% endfor %}
@@ -212,6 +287,7 @@
                 });
             });
         </script>
+
 
     </body>
 </html>
