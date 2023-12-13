@@ -42,13 +42,14 @@
                             <img src="{% static 'AdminInfo/images/prof1.png' %}" class="profile-image img-fluid" alt="">
                         </a>
                         <ul class="dropdown-menu bg-white shadow">
+                            <form method="post" {% if ail_id %}action="{% url 'DashAppEdit' ail_id %}"{% else %}action="{% url 'DashApp' %}"{% endif %}></form>
                             <li>
                                 <div class="dropdown-menu-profile-thumb d-flex">
                                     <img src="{% static 'AdminInfo/images/prof1.png' %}" class="profile-image img-fluid me-3" alt="">
-
+                                    
                                     <div class="d-flex flex-column">
-                                        <small>Thomas</small>
-                                        <a href="#">thomas@site.com</a>
+                                        <small>{{ form.instance.fullname }}</small>
+                                        <a href="#">{{ form.instance.email }}</a>
                                     </div>
                                 </div>
                             <li class="border-top mt-3 pt-2 mx-4">
@@ -57,6 +58,7 @@
                                     Logout
                                 </a>
                             </li>
+                            </form>
                         </ul>
                     </div>
                 </div>
@@ -66,28 +68,16 @@
         <div class="container-fluid">
             <div class="row">
             <nav id="sidebarMenu" class="col-md-3 col-lg-3 d-md-block sidebar collapse">
-                    <div class="position-sticky py-4 px-3 sidebar-sticky">
-                        <ul class="nav flex-column h-100">
-                            
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="{% url 'AppView' %}">
-                                    <i class="bi-house-fill me-2"></i>
-                                    Overview
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link active" href="{% url 'DashApp' %}">
-                                    <i class="bi-person me-2"></i>
-                                    Form 1
-                                </a>
-                            </li>
-
-
+                    <div class="position-sticky py-4 px-5 sidebar-sticky">
+                        <ul class="nav flex-column h-50">
                             <li class="nav-item border-top mt-auto pt-2">
                                 <a class="nav-link" href="{% url 'index' %}">
                                     <i class="bi-box-arrow-left me-2"></i>
                                     Logout
+                                </a>
+                                <a class="nav-link active" >
+                                    <i class="bi-person me-2"></i>
+                                    Form 1
                                 </a>
                             </li>
                         </ul>
@@ -118,42 +108,43 @@
                                             </div>
                                         </div>	
                                         
-                                        <form method="post" action="{% url 'DashApp' %}">
+                                        <form method="post" {% if ail_id %}action="{% url 'DashAppEdit' ail_id %}"{% else %}action="{% url 'DashApp' %}"{% endif %}>
                                             {% csrf_token %}
-                                           
+                                        
                                             <!-- Fullname -->
                                             <label for="fullname">Fullname:</label>
-                                            <input class="form-control" type="text" placeholder="Fullname" name="fullname" class="input-field" required><br>
+                                            <input class="form-control" type="text" placeholder="Fullname" name="fullname" value="{{ form.instance.fullname }}" required><br>
                                         
                                             <!-- Contact -->
                                             <label for="contact">Contact:</label>
-                                            <input class="form-control" type="tel" placeholder="Contact" name="contact" class="input-field" required><br>
+                                            <input class="form-control" type="tel" placeholder="Contact" name="contact" value="{{ form.instance.contact }}" required><br>
                                         
                                             <!-- Email -->
                                             <label for="email">Email:</label>
-                                            <input class="form-control" type="email" placeholder="Email" name="email" class="input-field" required><br>
+                                            <input class="form-control" type="email" placeholder="Email" name="email" value="{{ form.instance.email }}" required><br>
                                         
                                             <!-- SSS Id -->
                                             <label for="sss_id">SSS Id:</label>
-                                            <input class="form-control" type="text" placeholder="SSS Id" name="sss_id" class="input-field" required><br>
+                                            <input class="form-control" type="text" placeholder="SSS Id" name="sss_id" value="{{ form.instance.sss_id }}" required><br>
                                         
                                             <!-- National Identification Number -->
                                             <label for="national_id">National Identification Number:</label>
-                                            <input class="form-control" type="text" placeholder="National Identification Number" name="national_id" class="input-field" required><br>
+                                            <input class="form-control" type="text" placeholder="National Identification Number" name="national_id" value="{{ form.instance.national_id }}" required><br>
                                         
                                             <!-- Occupation -->
                                             <label for="occupation">Occupation:</label>
-                                            <input class="form-control" type="text" placeholder="Occupation" name="occupation" class="input-field" required><br>
+                                            <input class="form-control" type="text" placeholder="Occupation" name="occupation" value="{{ form.instance.occupation }}" required><br>
                                         
                                             <!-- Annual Salary -->
                                             <label for="annual_salary">Annual Salary:</label>
-                                            <input class="form-control" type="number" placeholder="Annual Salary" name="annual_salary" class="input-field" required><br>
+                                            <input class="form-control" type="number" placeholder="Annual Salary" name="annual_salary" value="{{ form.instance.annual_salary }}" required><br>
                                         
-                                           
                                             <!-- Submit Button -->
                                             <button type="submit" class="btn btn-secondary">Submit</button>
-                                            
-                                        </form> 
+                                        
+                                        </form>
+                                        
+                                        
                                     </div> 
                                 </div>
                             </div>

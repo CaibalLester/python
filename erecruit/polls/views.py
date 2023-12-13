@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .forms import RegistrationForm
 from django.contrib.auth import authenticate, login
@@ -43,14 +43,27 @@ def login(request):
     return render(request, 'Home/login.html', {'form': form})
 
 
-def DashApp(request):
+def DashApp(request, ail_id=None):
     if request.method == 'POST':
-        form = AilForm(request.POST)
+        if ail_id:
+            # Editing an existing entry
+            ail_instance = get_object_or_404(Ail, pk=ail_id)
+            form = AilForm(request.POST, instance=ail_instance)
+        else:
+            # Creating a new entry
+            form = AilForm(request.POST)
+
         if form.is_valid():
             form.save()
             messages.info(request, 'Submitted Successfully!')
     else:
-        form = AilForm()
+        if ail_id:
+            # Displaying and editing an existing entry
+            ail_instance = get_object_or_404(Ail, pk=ail_id)
+            form = AilForm(instance=ail_instance)
+        else:
+            # Displaying a blank form for creating a new entry
+            form = AilForm()
 
     ails = Ail.objects.all()
 
@@ -96,7 +109,6 @@ def setting(request):
     return render(request, "Admin/setting.html")
 def help(request):
     return render(request, "Admin/help.html")
-
 
 
 

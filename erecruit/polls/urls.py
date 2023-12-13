@@ -17,6 +17,10 @@ urlpatterns = [
      path('DashApp/', views.DashApp, name='DashApp'),
      path('AppView/', views.AppView, name='AppView'),
 
+
+    path('DashApp/', views.DashApp, name='DashApp'),
+    path('DashApp/<int:ail_id>/', views.DashApp, name='edit_ail'),
+
 ]
 
 

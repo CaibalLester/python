@@ -482,13 +482,10 @@ strong {
   display: inline-block;
   position: relative;
   margin-top: 5px;
+  
 }
 
-#sidebarMenu .nav-link.active, 
-#sidebarMenu .nav-link:hover {
-  background: var(--primary-color);
-  color: var(--white-color);
-}
+
 
 .navbar-toggler {
   background: var(--primary-color);
