@@ -1,6 +1,7 @@
 # models.py
 from django.db import models
 from django.core.validators import MinLengthValidator
+from django.utils import timezone
 
 class User(models.Model):
     username = models.CharField(max_length=100)
@@ -21,4 +22,16 @@ class Ail(models.Model):
     national_id = models.CharField(max_length=20)  # Adjust the max length as needed
     occupation = models.CharField(max_length=100)
     annual_salary = models.DecimalField(max_digits=10, decimal_places=2)
-   
+
+
+class Mal(models.Model):
+    fullname = models.CharField(max_length=100)
+    gender = models.CharField(max_length=500)
+    age = models.PositiveSmallIntegerField(null=True, default='default_value')
+    birthdate = models.DateTimeField(default=timezone.now, null=True)
+    address = models.CharField(max_length=500)
+
+class Help(models.Model):
+    username = models.CharField(max_length=50, null=True, default='default_username')
+    email = models.EmailField(max_length=254, null=True, blank=True, default='default_email')
+    comments = models.TextField(blank=True, null=True, default='default_comments')

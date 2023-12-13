@@ -6,6 +6,8 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from .forms import AilForm
 from .models import Ail
+from .forms import MalForm
+from .models import Mal
 
 
 
@@ -114,6 +116,86 @@ def edit_ail(request, ail_id):
         form = AilForm(instance=ail_instance)
 
     return render(request, 'Admin/ManageApplicant.html', {'form': form, 'ail_id': ail_id})
+
+
+
+
+
+
+
+def delete_mal(request, mal_id):
+    mal_instance = get_object_or_404(Mal, pk=mal_id)
+    mal_instance.delete()
+    messages.info(request, 'Entry deleted successfully!')
+    return redirect('ManageApplicantt') 
+
+def DashAppp(request, mal_id=None):
+    if request.method == 'POST':
+        if mal_id:
+            # Editing an existing entry
+            mal_instance = get_object_or_404(Mal, pk=mal_id)
+            form = MalForm(request.POST, instance=mal_instance)
+        else:
+            # Creating a new entry
+            form = MalForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Submitted Successfully!')
+    else:
+        if mal_id:
+            # Displaying and editing an existing entry
+            mal_instance = get_object_or_404(Mal, pk=mal_id)
+            form = MalForm(instance=mal_instance)
+        else:
+            # Displaying a blank form for creating a new entry
+            form = MalForm()
+
+    mals = Mal.objects.all()
+
+    return render(request, 'Applicant/DashApp.html', {'form': form, 'mals': mals})
+
+def ManageApplicantt(request):
+    if request.method == 'POST':
+        form = MalForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Submitted Successfully!')
+    else:
+        form = MalForm()
+
+    mals = Mal.objects.all()
+
+    return render(request, 'Admin/ManageApplicantt.html', {'form': form, 'mals': mals})
+
+def AppVieww(request):
+    if request.method == 'POST':
+        form = MalForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Submitted Successfully!')
+    else:
+        form = MalForm()
+
+    mals = Mal.objects.all()
+
+    return render(request, 'Applicant/AppView.html', {'form': form, 'mals': mals})
+
+
+
+def edit_mal(request, mal_id):
+    mal_instance = get_object_or_404(Mal, pk=mal_id)
+
+    if request.method == 'POST':
+        form = MalForm(request.POST, instance=mal_instance)
+        if form.is_valid():
+            form.save()
+            return redirect('ManageApplicantt')  # Replace 'your_redirect_url' with the appropriate URL
+    else:
+        form = MalForm(instance=mal_instance)
+
+    return render(request, 'Admin/ManageApplicantt.html', {'form': form, 'mal_id': mal_id})
+
 
 
 #Admin
