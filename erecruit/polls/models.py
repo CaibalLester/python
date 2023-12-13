@@ -8,7 +8,10 @@ class User(models.Model):
     role = models.CharField(max_length=10, choices=[('admin', 'Admin'), ('agent', 'Agent'), ('applicant', 'Applicant')])
     password = models.CharField(max_length=100, validators=[MinLengthValidator(8)])
 
-
+class Log(models.Model):
+    username = models.CharField(max_length=100)
+    role = models.CharField(max_length=10, choices=[('admin', 'Admin'), ('agent', 'Agent'), ('applicant', 'Applicant')])
+    password = models.CharField(max_length=100, validators=[MinLengthValidator(8)])
 
 class Ail(models.Model):
     fullname = models.CharField(max_length=100)

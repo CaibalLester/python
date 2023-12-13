@@ -8,30 +8,13 @@ from .forms import AilForm
 from .models import Ail
 
 
+
+
 # Home
 def index(request):
     return render(request, "Home/index.html")
 
 
-
-def login(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
-
-            if user is not None:
-                login(request, user)
-                messages.success(request, 'Login successful!')
-                return redirect('home')  # Replace 'home' with the name of your home page URL
-            else:
-                messages.error(request, 'Invalid login credentials.')
-    else:
-        form = LoginForm()
-
-    return render(request, 'Home/login.html', {'form': form})
 
 def register(request):
     if request.method == 'POST':
@@ -42,6 +25,22 @@ def register(request):
     else:
         form = RegistrationForm()
     return render(request, 'Home/register.html', {'form': form})
+
+def login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            messages.info(request, 'Successful!')
+
+            if user.role == 'admin':
+                return redirect('/ManageApplicant')  
+            elif user.role == 'applicant':
+                return redirect('/AppView')  
+    else:
+        form = LoginForm()
+
+    return render(request, 'Home/login.html', {'form': form})
 
 
 def DashApp(request):
@@ -69,6 +68,21 @@ def ManageApplicant(request):
     ails = Ail.objects.all()
 
     return render(request, 'Admin/ManageApplicant.html', {'form': form, 'ails': ails})
+
+def AppView(request):
+    if request.method == 'POST':
+        form = AilForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.info(request, 'Submitted Successfully!')
+    else:
+        form = AilForm()
+
+    ails = Ail.objects.all()
+
+    return render(request, 'Applicant/AppView.html', {'form': form, 'ails': ails})
+
+
    
 
 

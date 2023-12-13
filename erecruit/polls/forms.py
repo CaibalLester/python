@@ -1,5 +1,6 @@
 from django import forms
 from .models import User
+from .models import Log
 from .models import Ail
 
 
@@ -9,9 +10,10 @@ class RegistrationForm(forms.ModelForm):
         fields = ['username', 'email', 'role', 'password']
 
 
-class LoginForm(forms.Form):
-    username = forms.CharField(label='Username', max_length=100)
-    password = forms.CharField(label='Password', widget=forms.PasswordInput())
+class LoginForm(forms.ModelForm):
+    class Meta:
+        model = Log
+        fields = ['username', 'role', 'password']
 
 
 
