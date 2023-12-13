@@ -49,13 +49,7 @@
 					<div class="col-sm-7" data-aos="fade-up" data-aos-offset="-500"><br><br>
 						<h3 class="font-weight-medium text-dark mt-5 mt-lg-0">Login</h3><br><br>
 						<div>
-							{% if messages %}
-								<ul class="messages">
-									{% for message in messages %}
-										<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-									{% endfor %}
-								</ul>
-							{% endif %}
+							
 						</div>
 						<form method="post" action="{% url 'login' %}">
 							{% csrf_token %}

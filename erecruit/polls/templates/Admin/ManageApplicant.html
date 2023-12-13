@@ -105,30 +105,27 @@
                     <div class="row my-4">
                         <div class="col-lg-15 col-12">
                             {% for ail in ails %}
-                                <!-- Display existing entries -->
-                                {{ ail.field_name }}
-
-                                <!-- Add edit button for each entry -->
-                                
-                                
-
-                                <!-- Edit Modal -->
-                                <div class="modal fade" id="editModal{{ ail.id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel{{ ail.id }}" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="editModalLabel{{ ail.id }}">Edit Applicant Information</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form method="post" action="{% url 'edit_ail' ail.id %}">
-                                                    {% csrf_token %}
-                                                    
-                                                    {% if ails %}
-                                                    {% for ail in ails %}
-                                            <!-- Fullname -->
+                            <!-- Display existing entries -->
+                            {{ ail.field_name }}
+                        
+                            <!-- Add edit button for each entry -->
+                            
+                        
+                        
+                            <!-- Edit Modal -->
+                            <div class="modal fade" id="editModal{{ ail.id }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel{{ ail.id }}" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="editModalLabel{{ ail.id }}">Edit Applicant Info</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="post" action="{% url 'edit_ail' ail.id %}">
+                                                {% csrf_token %}
+                                                <!-- Fullname -->
                                             <label for="fullname">Fullname:</label>
                                             <input class="form-control" type="text" placeholder="Fullname" name="fullname" value="{{ ail.fullname }}" required><br>
                                         
@@ -155,21 +152,18 @@
                                             <!-- Annual Salary -->
                                             <label for="annual_salary">Annual Salary:</label>
                                             <input class="form-control" type="number" placeholder="Annual Salary" name="annual_salary" value="{{ ail.annual_salary }}" required><br>
-                                            {% endfor %}
-                                            {% else %}
-                                            <p>No Ail data available.</p>
-                                            {% endif %}
-                                           
-                                                    <br>
-                                                    <button type="submit" class="btn btn-primary">Update Your Info</button>
-                                                </form>
-                                            </div>
+                                        
+                                                <br>
+                                                <button type="submit" class="btn btn-primary">Update Entry</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
-                            {% endfor %}
-
-                            <!-- Your form and other content here -->
+                            </div>
+                        {% endfor %}
+                        
+                        <!-- Your form and other content here -->
+                        
 
                             <div class="custom-block bg-white">
                                 <div class="tab-content" id="myTabContent">
