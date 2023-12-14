@@ -3,6 +3,7 @@ from .models import User
 from .models import Log
 from .models import Ail
 from .models import Mal
+from .models import Help
 
 
 class RegistrationForm(forms.ModelForm):
@@ -47,3 +48,17 @@ class MalForm(forms.ModelForm):
             'address': forms.TextInput(attrs={'class': 'form-control'}),
 
         }
+
+
+
+
+
+class HelpForm(forms.ModelForm):
+    class Meta:
+        model = Help
+        fields = ['username', 'email', 'comments']
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),  
+            'comments': forms.TextInput(attrs={'class': 'form-control'}),
+        } 

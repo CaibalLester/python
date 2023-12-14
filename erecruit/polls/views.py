@@ -4,6 +4,7 @@ from django.contrib import messages
 from .forms import RegistrationForm
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
+from .forms import HelpForm
 from .forms import AilForm
 from .models import Ail
 from .forms import MalForm
@@ -16,7 +17,14 @@ from .models import Mal
 def index(request):
     return render(request, "Home/index.html")
 
-
+def help(request):
+    if request.method == 'POST':
+        form = HelpForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = HelpForm()
+    return render(request, 'Home/index.html', {'form': form})
 
 def register(request):
     if request.method == 'POST':
@@ -206,8 +214,7 @@ def profile(request):
     return render(request, "Admin/profile.html")
 def setting(request):
     return render(request, "Admin/setting.html")
-def help(request):
-    return render(request, "Admin/help.html")
+
 
 
 

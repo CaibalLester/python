@@ -83,25 +83,28 @@
 						</div>
 						<div class="col-sm-7" data-aos="fade-up" data-aos-offset="-500">
 							<h3 class="font-weight-medium text-dark mt-5 mt-lg-0">Got A Problem</h3>
-							<form>
+							<form method="post" action="{% url 'help' %}">
+								{% csrf_token %}
 								<div class="row">
+									
+										
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="text" class="form-control" id="name" placeholder="Name*">
+											<input type="text" class="form-control" name="username" id="username" placeholder="Name*">
 										</div>
 									</div>
 									<div class="col-sm-6">
 										<div class="form-group">
-											<input type="email" class="form-control" id="mail" placeholder="Email*">
+											<input type="email" class="form-control" name="email" id="email" placeholder="Email*">
 										</div>
 									</div>
 									<div class="col-sm-12">
 										<div class="form-group">
-											<textarea name="message" id="message" class="form-control" placeholder="Message*" rows="5"></textarea>
+											<textarea name="comments" id="comments" class="form-control" placeholder="Message*" rows="5"></textarea>
 										</div>
 									</div>
 									<div class="col-sm-12">
-										<a href="#" class="btn btn-secondary">SEND</a>
+										<button type="submit" class="btn btn-secondary">Save</button>
 									</div>
 								</div>
 							</form>

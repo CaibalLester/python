@@ -18,7 +18,7 @@ urlpatterns = [
      path('AppView/', views.AppView, name='AppView'),
 
 
-
+    path('help/', views.help, name='help'),
     path('DashApp/<int:ail_id>/', views.DashApp, name='edit_ail'),
 
     path('delete_ail/<int:ail_id>/', views.delete_ail, name='delete_ail'),
